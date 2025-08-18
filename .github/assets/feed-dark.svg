@@ -1,0 +1,91 @@
+<svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;">
+  <!-- Activity Feed Card - Dark Mode -->
+
+
+  <!-- Main card container -->
+  <rect width="100%" height="100%" fill="#0d1117" rx="6" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Card header -->
+  <rect x="1" y="1" width="398" height="30" fill="#161b22" rx="2"/>
+  <rect x="1" y="26" width="398" height="4" fill="#161b22" />
+
+  <!-- Header text -->
+  <text x="20" y="20" font-family="system-ui" font-size="11" font-weight="600" fill="#f0f6fc">
+    ⚡ Recent Activity
+  </text>
+
+  <!-- Activity 1 -->
+  <g transform="translate(20,50)">
+    <rect width="360" height="35" fill="#161b22" rx="6" stroke="#30363d"/>
+    <defs>
+      <clipPath id="activity1-clip">
+        <circle cx="15" cy="17" r="8"/>
+      </clipPath>
+    </defs>
+    <image x="7" y="9" width="16" height="16" href="{activity1_avatar_url}" clip-path="url(#activity1-clip)"/>
+    <text x="35" y="15" font-family="system-ui" font-size="12" fill="#f0f6fc">{activity1_message}</text>
+    <text x="35" y="28" font-family="system-ui" font-size="10" fill="#8b949e">{activity1_time_ago}</text>
+    <text x="340" y="21" font-family="system-ui" font-size="16">{activity1_emoji}</text>
+  </g>
+
+  <!-- Activity 2 -->
+  <g transform="translate(20,95)">
+    <rect width="360" height="35" fill="#161b22" rx="6" stroke="#30363d"/>
+    <defs>
+      <clipPath id="activity2-clip">
+        <circle cx="15" cy="17" r="8"/>
+      </clipPath>
+    </defs>
+    <image x="7" y="9" width="16" height="16" href="{activity2_avatar_url}" clip-path="url(#activity2-clip)"/>
+    <text x="35" y="15" font-family="system-ui" font-size="12" fill="#f0f6fc">{activity2_user} {activity2_action} {activity2_item}</text>
+    <text x="35" y="28" font-family="system-ui" font-size="10" fill="#8b949e">{activity2_time_ago}</text>
+    <text x="340" y="21" font-family="system-ui" font-size="16">{activity2_emoji}</text>
+  </g>
+
+  <!-- Activity 3 -->
+  <g transform="translate(20,140)">
+    <rect width="360" height="35" fill="#161b22" rx="6" stroke="#30363d"/>
+    <defs>
+      <clipPath id="activity3-clip">
+        <circle cx="15" cy="17" r="8"/>
+      </clipPath>
+    </defs>
+    <image x="7" y="9" width="16" height="16" href="{activity3_avatar_url}" clip-path="url(#activity3-clip)"/>
+    <text x="35" y="15" font-family="system-ui" font-size="12" fill="#f0f6fc">{activity3_user} {activity3_action} {activity3_item}</text>
+    <text x="35" y="28" font-family="system-ui" font-size="10" fill="#8b949e">{activity3_time_ago}</text>
+    <text x="340" y="21" font-family="system-ui" font-size="16">{activity3_emoji}</text>
+  </g>
+
+  <!-- Activity 4 -->
+  <g transform="translate(20,185)">
+    <rect width="360" height="35" fill="#161b22" rx="6" stroke="#30363d"/>
+    <defs>
+      <clipPath id="activity4-clip">
+        <circle cx="15" cy="17" r="8"/>
+      </clipPath>
+    </defs>
+    <image x="7" y="9" width="16" height="16" href="{activity4_avatar_url}" clip-path="url(#activity4-clip)"/>
+    <text x="35" y="15" font-family="system-ui" font-size="12" fill="#f0f6fc">{activity4_user} {activity4_action} {activity4_item}</text>
+    <text x="35" y="28" font-family="system-ui" font-size="10" fill="#8b949e">{activity4_time_ago}</text>
+    <text x="340" y="21" font-family="system-ui" font-size="16">{activity4_emoji}</text>
+  </g>
+
+  <!-- Activity 5 -->
+  <g transform="translate(20,230)">
+    <rect width="360" height="35" fill="#161b22" rx="6" stroke="#30363d"/>
+    <defs>
+      <clipPath id="activity5-clip">
+        <circle cx="15" cy="17" r="8"/>
+      </clipPath>
+    </defs>
+    <image x="7" y="9" width="16" height="16" href="{activity5_avatar_url}" clip-path="url(#activity5-clip)"/>
+    <text x="35" y="15" font-family="system-ui" font-size="12" fill="#f0f6fc">{activity5_message}</text>
+    <text x="35" y="28" font-family="system-ui" font-size="10" fill="#8b949e">{activity5_time_ago}</text>
+    <text x="340" y="21" font-family="system-ui" font-size="16">{activity5_emoji}</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="20" y="300" font-family="system-ui" font-size="11" fill="#8b949e">
+    🔄 Updates every 5 minutes • Last update: {last_update}
+  </text>
+</svg>

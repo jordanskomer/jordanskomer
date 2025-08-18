@@ -1,0 +1,93 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jordanskomer",
+  "main": "app/index.ts",
+  "send_metrics": false,
+  "compatibility_date": "2024-11-11",
+  "workers_dev": false,
+  "observability": {
+    "enabled": true,
+  },
+  "route": {
+    "pattern": "github.jordanskomer.com",
+    "custom_domain": true,
+  },
+  /**
+   * Smart Placement
+   * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
+   */
+  // "placement": { "mode": "smart" }
+  /**
+   * Bindings
+   * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
+   * databases, object storage, AI inference, real-time communication and more.
+   * https://developers.cloudflare.com/workers/runtime-apis/bindings/
+   */
+  "kv_namespaces": [
+    {
+      "binding": "KV_SETTINGS",
+      "id": "051b5fb010074f0294a2b26f0d621da0",
+    },
+  ],
+  "d1_databases": [
+    {
+      "binding": "TAMAGITCHI_DB",
+      "database_name": "tamagitchi-db",
+      "database_id": "b13fdd13-ad09-48d1-9f52-69d1ea4b3592",
+      "migrations_dir": "db/migrations",
+    },
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "TAMAGITCHI_DO",
+        "class_name": "TamagitchiDO",
+      },
+    ],
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["TamagitchiDO"],
+    },
+  ],
+  "r2_buckets": [
+    {
+      "binding": "R2_ART",
+      "bucket_name": "r2-art",
+    },
+  ],
+  "ai": {
+    "binding": "AI",
+  },
+  /**
+   * CRON Triggers
+   * https://developers.cloudflare.com/workers/configuration/cron-triggers/
+   */
+  // "triggers": {
+  //   "crons": ["0 * * * *"],
+  // },
+  /**
+   * Environment Variables
+   * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
+   */
+  // "vars": { "MY_VARIABLE": "production_value" }
+  /**
+   * Note: Use secrets to store sensitive data.
+   * https://developers.cloudflare.com/workers/configuration/secrets/
+   */
+  /**
+   * Static Assets
+   * https://developers.cloudflare.com/workers/static-assets/binding/
+   */
+  // "assets": { "directory": "./public/", "binding": "ASSETS" }
+  /**
+   * Service Bindings (communicate between multiple Workers)
+   * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
+   */
+  // "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
+}

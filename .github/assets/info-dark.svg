@@ -1,0 +1,67 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;">
+  <!-- GitHub Dark Mode Colors -->
+
+  <!-- Main card container -->
+  <rect width="100%" height="100%" fill="#0d1117" rx="4" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Card header -->
+  <rect x="1" y="1" width="398" height="30" fill="#161b22" rx="2"/>
+  <rect x="1" y="26" width="398" height="4" fill="#161b22" />
+
+  <!-- Header text -->
+  <text x="20" y="20" font-family="system-ui" font-size="11" font-weight="600" fill="#f0f6fc">
+    Greetings!
+  </text>
+
+
+  <!-- Main content area -->
+  <g transform="translate(20,40)">
+    <!-- Bio/description -->
+    <text x="0" y="10" width="360" font-family="system-ui" font-size="9" fill="#8b949e">
+      {bio_line1}
+    </text>
+     <text x="0" y="22.5" width="360" font-family="system-ui" font-size="9" fill="#8b949e">
+      {bio_line2}
+    </text>
+    <text x="0" y="35" width="360" font-family="system-ui" font-size="9" fill="#8b949e">
+      {bio_line3}
+    </text>
+    <g transform="translate(0,50)" class="user-location">
+      <rect x="0" y="0" width="360" height="40" fill="#161b22" rx="4" stroke="#30363d"/>
+      <text x="12" y="15" font-family="system-ui" font-size="9" fill="#f1f6fb">
+        My Location
+      </text>
+      <text x="10" y="31" font-family="system-ui" font-size="11" fill="#f0f6fc">
+        📍 {location} {country} • {weather_emoji} {weather_condition} • {weather_temperature}
+      </text>
+    </g>
+    <g transform="translate(0,100)" class="user-location">
+      <rect x="0" y="0" width="360" height="40" fill="#161e2d" rx="4" stroke="#2c487d" />
+      <text x="12" y="15" font-family="system-ui" font-size="9"  fill="#0969da">
+        GitHub Proxy Location ({user_distance})
+      </text>
+      <text x="10" y="31" font-family="system-ui" font-size="11" fill="#0969da">
+        📍 {user_location} • {user_weather_emoji} {user_weather_condition} • {user_weather_temperature}
+      </text>
+      </g>
+
+    <!-- Crypto prices -->
+    <g transform="translate(0,170)">
+        <text x="0" y="0" width="360" font-family="system-ui" font-size="9" fill="#8b949e">
+        Crypto Prices {crypto_updated}
+        </text>
+      <rect x="0" y="10" width="175" height="35" fill="#161b22" rx="4" stroke="#30363d"/>
+      <text x="12" y="32" font-family="system-ui" font-size="13" fill="#f0f6fc">
+        ₿ ${crypto_btc}
+      </text>
+
+      <rect x="185" y="10" width="175" height="35" fill="#161b22" rx="4" stroke="#30363d"/>
+      <text x="197" y="32" font-family="system-ui" font-size="13" fill="#f0f6fc">
+        Ξ ${crypto_eth}
+      </text>
+    </g>
+  <text x="0" y="240" font-family="system-ui" font-size="8" fill="#0969da">
+      Wanna meet up? Shoot me an email at {email}
+    </text>
+  </g>
+</svg>

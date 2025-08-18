@@ -1,0 +1,24 @@
+<svg viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;">
+  <!-- Repository Card - Light Mode -->
+
+  <!-- Main card container -->
+  <rect x="0" y="20" width="100%" height="80" fill="#ffffff" rx="6" stroke="#d0d7de" stroke-width="1"/>
+
+  <!-- Main content -->
+  <g transform="translate(20,30)">
+    <!-- Made with love line -->
+    <text x="0" y="15" font-family="system-ui" font-size="13" fill="#24292f">
+      Made with ❤️
+    </text>
+
+    <!-- Technology stack -->
+    <text x="0" y="35" font-family="system-ui" font-size="11" fill="#656d76">
+      Built on Cloudflare Workers • Durable Objects • TypeScript • AI
+    </text>
+
+    <!-- Call to action -->
+    <text x="0" y="55" font-family="system-ui" font-size="10" fill="#0969da">
+      🔗 Click to view source code on GitHub
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,30 @@
+{
+  "name": "jordanskomer",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "cf-typegen": "wrangler types",
+    "kv:load-personal": "wrangler kv key put current_info --binding KV_SETTINGS --path ./personal.json",
+    "kv:load-personal:prod": "wrangler kv key put current_info --remote --binding KV_SETTINGS --path ./personal.json",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "wrangler d1 migrations apply TAMAGITCHI_DB --local",
+    "db:migrate:prod": "wrangler d1 migrations apply TAMAGITCHI_DB",
+    "db:studio": "drizzle-kit studio",
+    "db:push": "drizzle-kit push"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "drizzle-orm": "^0.44.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250816.0",
+    "@types/node": "22.13.0",
+    "@types/service-worker-mock": "^2.0.4",
+    "drizzle-kit": "^0.31.4",
+    "typescript": "^5.9.2",
+    "wrangler": "^4.31.0"
+  }
+}

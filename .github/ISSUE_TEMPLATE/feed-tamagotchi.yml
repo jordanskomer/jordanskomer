@@ -1,0 +1,36 @@
+name: 🍕 Feed Tamagotchi
+description: Feed the tamagotchi to keep it happy and healthy!
+title: "Feed: [FOOD_TYPE]"
+labels: ["tamagotchi", "feed"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🍕 Feed the Tamagotchi
+        
+        Choose what to feed the tamagotchi! Different foods provide different benefits.
+        
+  - type: dropdown
+    id: food
+    attributes:
+      label: Food Type
+      description: What would you like to feed the tamagotchi?
+      options:
+        - 🍕 Pizza
+        - 🍜 Ramen
+        - 🍣 Sushi
+        - ☕ Coffee
+        - 🍎 Apple
+      default: 0
+    validations:
+      required: true
+      
+  - type: textarea
+    id: message
+    attributes:
+      label: Optional Message
+      description: Add a fun message with your feeding!
+      placeholder: "Enjoy your meal, little friend!"
+    validations:
+      required: false

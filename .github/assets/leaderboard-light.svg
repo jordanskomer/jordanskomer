@@ -1,0 +1,56 @@
+<svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;">
+  <!-- Leaderboard Card - Light Mode -->
+  
+  <!-- Main card container -->
+  <rect width="100%" height="100%" fill="#ffffff" rx="6" stroke="#d0d7de" stroke-width="1"/>
+  
+  <!-- Card header -->
+  <rect x="0" y="0" width="100%" height="40" fill="#f6f8fa" rx="6"/>
+  <rect x="0" y="34" width="100%" height="6" fill="#f6f8fa"/>
+  
+  <!-- Header text -->
+  <text x="16" y="26" font-family="system-ui" font-size="14" font-weight="600" fill="#24292f">
+    🏆 Top Contributors
+  </text>
+  
+  <!-- Live indicator -->
+  <circle cx="370" cy="20" r="4" fill="#238636">
+    <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="340" y="25" font-family="system-ui" font-size="12" fill="#656d76">Live</text>
+  
+  <!-- #1 User -->
+  <g transform="translate(20,60)">
+    <rect width="360" height="40" fill="#f6f8fa" rx="6" stroke="#d0d7de"/>
+    <circle cx="20" cy="20" r="12" fill="#238636"/>
+    <text x="20" y="26" text-anchor="middle" font-family="system-ui" font-size="10" font-weight="600" fill="#ffffff">{user1_initials}</text>
+    <text x="45" y="18" font-family="system-ui" font-size="13" font-weight="600" fill="#24292f">{user1_name}</text>
+    <text x="45" y="32" font-family="system-ui" font-size="11" fill="#656d76">🍕 Fed {user1_feeds} • 🎮 Played {user1_plays}</text>
+    <text x="340" y="25" text-anchor="middle" font-family="system-ui" font-size="14" font-weight="600" fill="#238636">{user1_total}</text>
+  </g>
+  
+  <!-- #2 User -->
+  <g transform="translate(20,110)">
+    <rect width="360" height="40" fill="#f6f8fa" rx="6" stroke="#d0d7de"/>
+    <circle cx="20" cy="20" r="12" fill="#0969da"/>
+    <text x="20" y="26" text-anchor="middle" font-family="system-ui" font-size="10" font-weight="600" fill="#ffffff">{user2_initials}</text>
+    <text x="45" y="18" font-family="system-ui" font-size="13" font-weight="600" fill="#24292f">{user2_name}</text>
+    <text x="45" y="32" font-family="system-ui" font-size="11" fill="#656d76">🍜 Fed {user2_feeds} • 🎯 Played {user2_plays}</text>
+    <text x="340" y="25" text-anchor="middle" font-family="system-ui" font-size="14" font-weight="600" fill="#0969da">{user2_total}</text>
+  </g>
+  
+  <!-- #3 User -->
+  <g transform="translate(20,160)">
+    <rect width="360" height="40" fill="#f6f8fa" rx="6" stroke="#d0d7de"/>
+    <circle cx="20" cy="20" r="12" fill="#6f42c1"/>
+    <text x="20" y="26" text-anchor="middle" font-family="system-ui" font-size="10" font-weight="600" fill="#ffffff">{user3_initials}</text>
+    <text x="45" y="18" font-family="system-ui" font-size="13" font-weight="600" fill="#24292f">{user3_name}</text>
+    <text x="45" y="32" font-family="system-ui" font-size="11" fill="#656d76">☕ Fed {user3_feeds} • 🧩 Played {user3_plays}</text>
+    <text x="340" y="25" text-anchor="middle" font-family="system-ui" font-size="14" font-weight="600" fill="#6f42c1">{user3_total}</text>
+  </g>
+  
+  <!-- Footer stats -->
+  <text x="20" y="240" font-family="system-ui" font-size="11" fill="#656d76">
+    📊 Total interactions: {total_interactions} • 👥 Active users: {active_users}
+  </text>
+</svg>

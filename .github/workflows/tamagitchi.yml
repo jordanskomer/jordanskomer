@@ -1,0 +1,124 @@
+name: Tamagotchi Interaction Handler
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  handle-interaction:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'tamagotchi')
+    
+    steps:
+      - name: Parse Issue Data
+        id: parse
+        run: |
+          # Extract interaction type from labels
+          if [[ "${{ contains(github.event.issue.labels.*.name, 'feed') }}" == "true" ]]; then
+            echo "type=feed" >> $GITHUB_OUTPUT
+          elif [[ "${{ contains(github.event.issue.labels.*.name, 'play') }}" == "true" ]]; then
+            echo "type=play" >> $GITHUB_OUTPUT
+          else
+            echo "type=unknown" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          
+          # Extract subtype from title
+          title="${{ github.event.issue.title }}"
+          if [[ "$title" =~ Feed:\ 🍕\ Pizza ]]; then
+            echo "subtype=pizza" >> $GITHUB_OUTPUT
+          elif [[ "$title" =~ Feed:\ 🍜\ Ramen ]]; then
+            echo "subtype=ramen" >> $GITHUB_OUTPUT
+          elif [[ "$title" =~ Feed:\ 🍣\ Sushi ]]; then
+            echo "subtype=sushi" >> $GITHUB_OUTPUT
+          elif [[ "$title" =~ Feed:\ ☕\ Coffee ]]; then
+            echo "subtype=coffee" >> $GITHUB_OUTPUT
+          elif [[ "$title" =~ Feed:\ 🍎\ Apple ]]; then
+            echo "subtype=apple" >> $GITHUB_OUTPUT
+          elif [[ "$title" =~ Play:\ 🎯\ Code\ Challenge ]]; then
+            echo "subtype=code-challenge" >> $GITHUB_OUTPUT
+          elif [[ "$title" =~ Play:\ 🎵\ Music ]]; then
+            echo "subtype=music" >> $GITHUB_OUTPUT
+          elif [[ "$title" =~ Play:\ 🏃\ Exercise ]]; then
+            echo "subtype=exercise" >> $GITHUB_OUTPUT
+          elif [[ "$title" =~ Play:\ 🧩\ Puzzle ]]; then
+            echo "subtype=puzzle" >> $GITHUB_OUTPUT
+          elif [[ "$title" =~ Play:\ 🎨\ Creative\ Time ]]; then
+            echo "subtype=creative" >> $GITHUB_OUTPUT
+          else
+            echo "subtype=unknown" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Send Interaction to Tamagotchi API
+        id: interact
+        run: |
+          response=$(curl -s -X POST "${{ secrets.TAMAGOTCHI_API_URL }}/interaction" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.TAMAGOTCHI_API_TOKEN }}" \
+            -d '{
+              "type": "${{ steps.parse.outputs.type }}",
+              "subtype": "${{ steps.parse.outputs.subtype }}",
+              "userId": "${{ github.event.issue.user.id }}",
+              "githubUsername": "${{ github.event.issue.user.login }}",
+              "issueNumber": ${{ github.event.issue.number }},
+              "metadata": {
+                "issueTitle": "${{ github.event.issue.title }}",
+                "issueBody": "${{ github.event.issue.body }}",
+                "avatarUrl": "${{ github.event.issue.user.avatar_url }}"
+              }
+            }')
+          
+          echo "response=$response" >> $GITHUB_OUTPUT
+          
+          # Check if successful
+          if [[ $(echo "$response" | jq -r '.success') == "true" ]]; then
+            echo "success=true" >> $GITHUB_OUTPUT
+            echo "message=$(echo "$response" | jq -r '.message')" >> $GITHUB_OUTPUT
+          else
+            echo "success=false" >> $GITHUB_OUTPUT
+            echo "error=$(echo "$response" | jq -r '.error // "Unknown error"')" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Comment on Issue - Success
+        if: steps.interact.outputs.success == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const response = JSON.parse('${{ steps.interact.outputs.response }}');
+            
+            // Use the pre-formatted message from the API
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: response.message
+            });
+
+      - name: Comment on Issue - Error
+        if: steps.interact.outputs.success == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const message = `## ❌ Interaction Failed\n\n**Error:** ${{ steps.interact.outputs.error }}\n\nPlease try again or contact the maintainer.`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: message
+            });
+
+      - name: Close Issue
+        if: steps.interact.outputs.success == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.update({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed',
+              state_reason: 'completed'
+            });

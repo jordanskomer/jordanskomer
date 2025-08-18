@@ -1,0 +1,36 @@
+name: 🎮 Play with Tamagotchi
+description: Play activities with the tamagotchi to boost its happiness and energy!
+title: "Play: [ACTIVITY_TYPE]"
+labels: ["tamagotchi", "play"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🎮 Play with Tamagotchi
+        
+        Choose an activity to play with the tamagotchi! Different activities provide different benefits.
+        
+  - type: dropdown
+    id: activity
+    attributes:
+      label: Activity Type
+      description: What activity would you like to do?
+      options:
+        - 🎯 Code Challenge
+        - 🎵 Music
+        - 🏃 Exercise
+        - 🧩 Puzzle
+        - 🎨 Creative Time
+      default: 0
+    validations:
+      required: true
+      
+  - type: textarea
+    id: message
+    attributes:
+      label: Optional Message
+      description: Add a fun message with your play activity!
+      placeholder: "Let's have some fun!"
+    validations:
+      required: false
